@@ -1,5 +1,8 @@
 #include<stdio.h>
-#define MAX 8;
+#define MAX 8;//used to specify length of array
+void merge_sort(int a[],int ,int);
+void merge(int a[],int ,int ,int);
+void print_array(int *,int);
 main()
 {
   int a[]={2,3,6,5,1,7,8,4};
@@ -7,15 +10,17 @@ main()
   int l,m,r;
   l=m=0;
   r=len-1;
+  printf("input given\n");
+  print_array(a,len);
   merge_sort(a,l,r);
-  for(l=0;l<=r;l++)
-  printf("%d",a[l]);
+  printf("result after sorting\n");
+  print_array(a,len);
   printf("\nDone sorting in ascending ordrer\n");
   printf("Press any key to exit\n");
   getchar();
 }
 
-merge_sort(int a[],int l,int r)
+void merge_sort(int a[],int l,int r)
 {
   int m;
   if(l<r)
@@ -27,10 +32,12 @@ merge_sort(int a[],int l,int r)
     }
 }
 
-merge(int a[],int l,int m,int r)
+void merge(int a[],int l,int m,int r)
 {
-  int temp[8];
+  int *temp;
   int i,j,k;
+  k=MAX;
+  temp=(int *)malloc(sizeof (int)*k);
   m=m+1;
   i=k=l;
   j=m;
@@ -67,4 +74,15 @@ merge(int a[],int l,int m,int r)
     {
       a[k]=temp[k];
     }
+  free(temp);
+}
+
+void print_array(int *temp, int size)
+{
+  int i;
+  for(i=0;i<size;i++)
+    {
+      printf("%d ",temp[i]);
+    }
+  printf("\n");
 }
